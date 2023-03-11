@@ -223,6 +223,21 @@ class tree{
             return rightHeight + 1
         }
     }
+
+    depth(node){
+        let current = this.root;
+        let depth = 0;
+        while (current.data != node){
+            if (node < current){
+                current = current.left;
+                depth++;
+            } else{
+                current = current.right;
+                depth++;
+            }
+        }
+        return depth;
+    }
 }
 
 function compareNumbers(a, b){
@@ -259,6 +274,8 @@ console.log('postorder:');
 balancedBST.postorder(rootNode);
 let theHeight = balancedBST.height(rootNode);
 console.log(`The height is: ${theHeight}`);
+let depth = balancedBST.depth(10);
+console.log(`The depth is ${depth}`)
 
 
 
