@@ -84,6 +84,7 @@ class tree{
                 currentNode = currentNode.right;
             }
         }
+        console.log(`Value ${value} is not present`);
         return false;
     }
 
@@ -105,7 +106,6 @@ class tree{
                 currentNode = currentNode.right;
                 }
             else if (value == currentNode.data){
-                console.log(`currentNode ${currentNode.data}`);
                 //if it's a leaf, delete it
                 if (currentNode.right == null && currentNode.left == null){
                     if (parentNode.left == currentNode){
@@ -143,7 +143,6 @@ class tree{
                     let swapNode = currentNode;
                     let firstRight = swapNode.right;
                     if (!firstRight.left){
-                        console.log(`firstRight ${firstRight.data}`)
                         swapNode.data = firstRight.data;
                         swapNode.right = firstRight.right;
                         break;
@@ -152,7 +151,6 @@ class tree{
                     while (leftMost.left){
                         parentNode = leftMost;
                         leftMost = leftMost.left;
-                        console.log(leftMost.data);
                     }
                     swapNode.data = leftMost.data;
                     parentNode.left = null;
@@ -160,12 +158,30 @@ class tree{
                 }
                 
             }
-            //return false;
         }
-        // console.log(parentNode.data);
-        // console.log(currentNode.data);
         prettyPrint(this.root);
     }  
+
+    levelOrder(){
+        let Q = [];
+        let rootNode = this.root;
+        let current;
+        if (rootNode == null){
+            return false;
+        }
+        Q.push(rootNode);
+        while (Q.length != 0){
+            current = Q[0];
+            if (current.left != null){
+                Q.push(current.left);
+            }
+            if (current.right != null){
+                Q.push(current.right);
+            }
+            console.log(current.data);
+            let front = Q.shift();
+        }
+    }
 }
 
 function compareNumbers(a, b){
@@ -192,6 +208,7 @@ balancedBST.find(5);
 balancedBST.delete(6);
 balancedBST.delete(7);
 balancedBST.delete(6);
+balancedBST.levelOrder();
 
 
 
