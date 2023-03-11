@@ -209,6 +209,20 @@ class tree{
         this.postorder(rootNode.right);
         console.log(rootNode.data);
     }
+
+    height(rootNode){
+        if (rootNode == null){
+            return -1;
+        }
+
+        let leftHeight = this.height(rootNode.left);
+        let rightHeight = this.height(rootNode.right);
+        if (leftHeight > rightHeight){
+            return leftHeight +1
+        } else {
+            return rightHeight + 1
+        }
+    }
 }
 
 function compareNumbers(a, b){
@@ -243,6 +257,8 @@ console.log('preorder:')
 balancedBST.preorder(rootNode);
 console.log('postorder:');
 balancedBST.postorder(rootNode);
+let theHeight = balancedBST.height(rootNode);
+console.log(`The height is: ${theHeight}`);
 
 
 
