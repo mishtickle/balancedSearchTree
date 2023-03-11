@@ -191,6 +191,24 @@ class tree{
         console.log(rootNode.data);
         this.inorder(rootNode.right); 
     }
+
+    preorder(rootNode){
+        if (rootNode == null){
+            return;
+        }
+        console.log(rootNode.data)
+        this.preorder(rootNode.left);
+        this.preorder(rootNode.right);
+    }
+
+    postorder(rootNode){
+        if (rootNode == null){
+            return;
+        }
+        this.postorder(rootNode.left);
+        this.postorder(rootNode.right);
+        console.log(rootNode.data);
+    }
 }
 
 function compareNumbers(a, b){
@@ -221,6 +239,10 @@ balancedBST.levelOrder();
 rootNode = balancedBST.root;
 console.log('inorder:')
 balancedBST.inorder(rootNode);
+console.log('preorder:')
+balancedBST.preorder(rootNode);
+console.log('postorder:');
+balancedBST.postorder(rootNode);
 
 
 
