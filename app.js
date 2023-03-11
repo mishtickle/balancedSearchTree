@@ -182,6 +182,16 @@ class tree{
             let front = Q.shift();
         }
     }
+    
+    inorder(rootNode){
+        let list = [];
+        if (rootNode == null){
+            return false;
+        }  
+        this.inorder(rootNode.left);
+        console.log(rootNode.data);
+        this.inorder(rootNode.right); 
+    }
 }
 
 function compareNumbers(a, b){
@@ -204,11 +214,14 @@ balancedBST.insert(9);
 balancedBST.insert(8);
 balancedBST.insert(11);
 balancedBST.find(5);
-//balancedBST.delete(7);
 balancedBST.delete(6);
 balancedBST.delete(7);
 balancedBST.delete(6);
+console.log('levelorder:')
 balancedBST.levelOrder();
+rootNode = balancedBST.root;
+console.log('inorder:')
+balancedBST.inorder(rootNode);
 
 
 
