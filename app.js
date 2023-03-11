@@ -184,7 +184,6 @@ class tree{
     }
     
     inorder(rootNode){
-        let list = [];
         if (rootNode == null){
             return false;
         }  
