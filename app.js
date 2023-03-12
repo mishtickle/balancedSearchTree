@@ -164,6 +164,7 @@ class tree{
 
     levelOrder(){
         let Q = [];
+        let newArray = [];
         let rootNode = this.root;
         let current;
         if (rootNode == null){
@@ -180,16 +181,19 @@ class tree{
             }
             console.log(current.data);
             let front = Q.shift();
+            newArray.push(front.data);
         }
+        return newArray;
     }
     
     inorder(rootNode){
+        let newArray = [];
         if (rootNode == null){
             return false;
         }  
         this.inorder(rootNode.left);
         console.log(rootNode.data);
-        this.inorder(rootNode.right); 
+        this.inorder(rootNode.right);
     }
 
     preorder(rootNode){
@@ -210,13 +214,13 @@ class tree{
         console.log(rootNode.data);
     }
 
-    height(rootNode){
-        if (rootNode == null){
+    height(theNode){
+        if (theNode == null){
             return -1;
         }
 
-        let leftHeight = this.height(rootNode.left);
-        let rightHeight = this.height(rootNode.right);
+        let leftHeight = this.height(theNode.left);
+        let rightHeight = this.height(theNode.right);
         if (leftHeight > rightHeight){
             return leftHeight +1
         } else {
@@ -238,6 +242,29 @@ class tree{
         }
         return depth;
     }
+
+    isBalanced(){
+        let newArray = this.levelOrder();
+        console.log(`Array for isBalanced is ${newArray}`);
+        for (let i = 0; i < newArray.length; i++){
+            let current = this.find(newArray[i])
+            let leftHeight = this.height(current.left)
+            let rightHeight = this.height(current.right)
+            if (Math.abs(leftHeight - rightHeight) > 1){
+                console.log('The tree is unbalanced')
+                return false;
+            }
+        }
+        console.log('The tree is balanced')
+        return true;
+    }
+
+    rebalance(){
+        let newArray = this.levelOrder();
+        newArray = organise(newArray);
+        return this.buildTree(newArray, 0, newArray.length - 1)
+    }
+    
 }
 
 function compareNumbers(a, b){
@@ -276,6 +303,15 @@ let theHeight = balancedBST.height(rootNode);
 console.log(`The height is: ${theHeight}`);
 let depth = balancedBST.depth(10);
 console.log(`The depth is ${depth}`)
+let theNode = balancedBST.find(8);
+theHeight = balancedBST.height(theNode);
+console.log(theHeight);
+balancedBST.isBalanced();
+balancedBST.insert(100);
+balancedBST.insert(101);
+balancedBST.insert(102);
+balancedBST.rebalance();
+
 
 
 
